@@ -1,9 +1,8 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles.scss';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
-import { ChakraProvider } from "@chakra-ui/react";
 import { makeServer } from "./api/api";
 
 const rootElement = document.getElementById("root");
@@ -14,9 +13,7 @@ if (process.env.NODE_ENV === "development") {
 
 ReactDOM.render(
   <StrictMode>
-    <ChakraProvider>
       <App />
-    </ChakraProvider>
   </StrictMode>,
   rootElement
 );

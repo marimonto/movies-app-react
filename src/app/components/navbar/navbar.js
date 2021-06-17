@@ -1,7 +1,7 @@
 
 import './styles.scss';
 
-const Input = ({ type, name, value, handleChange, title, }) => {
+const Navbar = ({ type, name, value, handleChange, title, }) => {
     return (
         <div className="input-col">
             <label htmlFor={name} className="label">{title}</label>
@@ -10,4 +10,4 @@ const Input = ({ type, name, value, handleChange, title, }) => {
     )
 }
 
-export default Input;
+export default Navbar;

@@ -1,0 +1,76 @@
+.container {
+    background-image: url("../../../assets/login-movie.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    height: 350px;
+    width: 400px;
+    padding: 20px;
+
+    .header {
+        background-color: rgba(0, 0, 0, 0.8);
+        height: 100px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        .title {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+
+    .body {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        color: white;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .error-message {
+            margin-top: 0.25rem;
+            font-size: 18px;
+            color: #dc3545;
+            font-weight: 600;
+        }
+    }
+}
+
+.logo {
+    position: sticky;
+    width: 200px;
+    top: 50px;
+    z-index: 999;
+}
+
+.login-button {
+    padding: 10px 15px;
+    background-color: #00d68f;
+    border-color: #00d68f;
+    border: 1px solid #00d68f;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: fit-content;
+    align-self: flex-end;
+
+    &:hover {
+        background-color: #2ce69b;
+        border-color: #2ce69b;
+    }
+}

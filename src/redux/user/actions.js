@@ -8,7 +8,19 @@ export const userActions = {
 };
 
 function login(username, password) {
+    if (!username) {
+        return dispatch => {
+            dispatch(failure('Ingrese un usuario válido'));
+        }
+    }
+
+    if (!password) {
+        return dispatch => {
+            dispatch(failure('Ingrese una contraseña válido'));
+        }
+    }
     return dispatch => {
+
         dispatch(request({ username }));
 
         userService.login(username, password)
@@ -18,8 +30,10 @@ function login(username, password) {
                     history.push('/gift-cards');
                 },
                 error => {
+                    if (error === "Unauthorized") {
+                       return dispatch(failure('Usuario y/o contraseña invalido')); 
+                    }
                     dispatch(failure(error.toString()));
-                    //dispatch(alertActions.error(error.toString()));
                 }
             );
     };

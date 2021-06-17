@@ -1,10 +1,10 @@
-import { Button } from "@chakra-ui/react";
+import './styles.scss';
 
-const ButtonComponent = ({ text, handleClick }) => {
+const ButtonComponent = ({ text, handleClick, className }) => {
     return (
-        <Button onClick={handleClick}>
+        <button onClick={handleClick}  className={className}>
             {text}
-        </Button>
+        </button >
     );
 }
 

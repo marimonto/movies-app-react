@@ -2,24 +2,32 @@ import { userConstants } from "../../constants/user.constants";
 
 const initialState = {
     loggingIn: false,
-    user: {}
+    user: {},
+    userLoading: false,
+    error: null
 }
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
             return {
-                loggingIn: true,
-                user: action.user
+                ...initialState,
+                userLoading: true,
             };
         case userConstants.LOGIN_SUCCESS:
             return {
+                ...state,
                 loggedIn: true,
+                userLoading: false,
                 user: action.user
             };
         case userConstants.LOGIN_FAILURE:
-            return {};
+
+            return {
+                ...initialState,
+                error: action.error,
+            };
         case userConstants.LOGOUT:
-            return {};
+            return initialState;
         default:
             return state;
     }
