@@ -1,0 +1,18 @@
+.layout-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    min-height: 4vh;
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .logo-header {
+            height: 50px;
+        }
+    }
+}

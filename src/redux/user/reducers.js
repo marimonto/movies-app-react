@@ -1,22 +1,22 @@
 import { userConstants } from "../../constants/user.constants";
 
 const initialState = {
-    loggingIn: false,
-    user: {},
+    user: null,
     userLoading: false,
     error: null
 }
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
+        case userConstants.GET_USER_REQUEST:
             return {
                 ...initialState,
                 userLoading: true,
             };
         case userConstants.LOGIN_SUCCESS:
+        case userConstants.GET_USER_SUCCESS:
             return {
                 ...state,
-                loggedIn: true,
                 userLoading: false,
                 user: action.user
             };

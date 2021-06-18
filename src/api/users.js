@@ -5,7 +5,8 @@ export const users = [
         userUuid: "f61db9a4-cd8c-11eb-b8bc-0242ac130003",
         role: "admin",
         userName: "admin",
-        password: "admin"
+        password: "admin",
+        avatar: 'AD'
     },
     {
         userId: 2,
@@ -13,6 +14,7 @@ export const users = [
         userUuid: "03cb6b6e-cd8d-11eb-b8bc-0242ac130003",
         role: "user",
         userName: "user",
-        password: "user"
+        password: "user",
+        avatar: "US"
     }
 ]

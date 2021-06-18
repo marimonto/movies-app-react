@@ -1,36 +1,26 @@
-import React from "react";
-import {
-  Route,
-  Switch
-} from "react-router-dom";
-import { Provider } from "react-redux";
-import store, { history } from "../redux/store";
-import { ConnectedRouter } from 'connected-react-router';
+import React, { Fragment, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { userActions } from "../redux/user/actions";
 
-import Login from "./pages/login";
-import Error404 from "./pages/error404";
-import GiftCards from "./pages/gift-cards";
-import { PrivateRoute } from "./components/privateRoute";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import Navbar from "./components/navbar/navbar";
+import AppRoutesContainer from "./routes";
+
 
 
 
 const App = () => {
-  const loggedIn = localStorage.getItem('user');
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  useEffect(() => {
+    if (!user) {
+      dispatch(userActions.getById());
+    }
+  }, [dispatch, user]);
   return (
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Switch>
-          <PrivateRoute exact path="/gift-cards" component={GiftCards} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/">
-            {loggedIn ? <Redirect to="/gift-cards" /> : <Redirect to="/login" /> }
-          </Route>
-          <Route exact path="*" component={Error404} />
-        </Switch>
-      </ConnectedRouter>
-    </Provider>
-
+    <Fragment>
+      {user && <Navbar />}
+      <AppRoutesContainer isloggedIn={user} />
+    </Fragment>
   )
 }
 

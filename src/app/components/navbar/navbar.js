@@ -1,12 +1,15 @@
 
 import './styles.scss';
+import logoHeader from '../../../assets/logo-header.png';
 
-const Navbar = ({ type, name, value, handleChange, title, }) => {
+const Navbar = () => {
     return (
-        <div className="input-col">
-            <label htmlFor={name} className="label">{title}</label>
-            <input id={name} type={type} name={name} value={value} onChange={handleChange} className="input" />
-        </div>
+      <header className="layout-header">
+        <nav className="nav">
+          <img className="logo-header" src={logoHeader} alt="Logo Movies" />
+          <img className="logo-header" src={logoHeader} alt="Logo Movies" />
+        </nav>
+      </header>
     )
 }
 

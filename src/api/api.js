@@ -19,6 +19,11 @@ export function makeServer({ environment = "test" } = {}) {
                 const currentUser = schema.db.users.findBy({ userName: attrs.userName })
                 return currentUser !== null ? checkPassword(currentUser, attrs.password) : new Response(401, { some: 'header' }, { errors: ['wrong user'] });
             })
+
+            this.get("/api/user/:id", (schema, request) => {
+                const id = request.params.id
+                return schema.db.users.findBy({ userUuid: id });
+            })
         },
     })
     return server;

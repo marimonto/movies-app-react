@@ -1,7 +1,8 @@
 
 export const userService = {
     login,
-    logout
+    logout,
+    getById
 };
 
 function login(userName, password) {
@@ -14,7 +15,7 @@ function login(userName, password) {
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('userId', JSON.stringify(user.userUuid));
 
             return user;
         });
@@ -22,8 +23,19 @@ function login(userName, password) {
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.removeItem('userId');
 }
+
+function getById(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    return fetch(`/api/user/${id}`, requestOptions)
+        .then(handleResponse)
+}
+
 
 
 function handleResponse(response) {
@@ -40,7 +52,6 @@ function handleResponse(response) {
             }
             return Promise.reject(error);
         }
-
         return data;
     });
 }
