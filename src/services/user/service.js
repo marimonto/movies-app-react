@@ -16,7 +16,6 @@ function login(userName, password) {
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('userId', JSON.stringify(user.userUuid));
-
             return user;
         });
 }
@@ -39,7 +38,9 @@ function getById(id) {
 
 
 function handleResponse(response) {
+    console.log(response);
     return response.text().then(text => {
+        
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 401) {

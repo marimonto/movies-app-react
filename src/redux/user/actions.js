@@ -27,6 +27,7 @@ function login(username, password) {
         userService.login(username, password)
             .then(
                 user => {
+                    console.log(user);
                     dispatch(success(user));
                     history.push('/gift-cards');
                 },
@@ -53,11 +54,11 @@ function logout() {
 function getById() {
     return dispatch => {
         dispatch(request());
-        const userId = JSON.parse(localStorage.getItem('userId'));
+/*         const userId = JSON.parse(localStorage.getItem('userId'));
         if (!userId) {
             return history.push('/login');
-        }
-        userService.getById(userId).then(
+        } */
+        userService.getById('userId').then(
             user => {
                 dispatch(success(user));
             },

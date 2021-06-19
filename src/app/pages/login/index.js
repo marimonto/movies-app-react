@@ -22,6 +22,11 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(userActions.login(userName, password))
+    }
+
     return <Fragment>
 
         <div className="container">
@@ -33,7 +38,7 @@ const Login = () => {
                     </h1>
                 </header>
                 <body className="body">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <Input
                             name="user"
                             type="text"
@@ -50,9 +55,8 @@ const Login = () => {
                             handleChange={handleUserPassword}
                         />
                         {errorMessage && <span className="error-message">{errorMessage}</span>}
+                        <Button className="login-button" type="submit" text="Ingresar">Submit</Button>
                     </form>
-                    <Button className="login-button" text="Ingresar" handleClick={e => dispatch(userActions.login(userName, password))}
-                    />
                 </body>
             </div>
         </div>

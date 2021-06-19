@@ -3,7 +3,8 @@ import { userConstants } from "../../constants/user.constants";
 const initialState = {
     user: null,
     userLoading: false,
-    error: null
+    error: null,
+    isloggedIn: false
 }
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
@@ -18,7 +19,8 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 userLoading: false,
-                user: action.user
+                user: action.user,
+                isloggedIn: true
             };
         case userConstants.LOGIN_FAILURE:
 

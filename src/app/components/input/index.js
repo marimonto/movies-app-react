@@ -1,13 +1,25 @@
 
+import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Input = ({ type, name, value, handleChange, title, }) => {
+const Input = ({ type, name, value, handleChange, title }) => {
     return (
         <div className="input-col">
-            <label htmlFor={name} className="label">{title}</label>
-            <input id={name} type={type} name={name} value={value} onChange={handleChange} className="input" />
+            <label>
+                <span className="label">{title}</span>
+                <input id={name} type={type} name={name} value={value} onChange={handleChange} className="input" />
+            </label>
+           
         </div>
     )
+}
+
+Input.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    value: PropTypes.string
 }
 
 export default Input;

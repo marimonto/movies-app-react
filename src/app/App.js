@@ -3,7 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../redux/user/actions";
 
-import Navbar from "./components/navbar/navbar";
+import Navbar from "./components/navbar";
 import AppRoutesContainer from "./routes";
 
 
@@ -11,16 +11,16 @@ import AppRoutesContainer from "./routes";
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  const isLogged = useSelector((state) => state.user.isloggedIn)
   useEffect(() => {
-    if (!user) {
+    if (!isLogged) {
       dispatch(userActions.getById());
     }
   }, []);
   return (
     <Fragment>
-      {user && <Navbar />}
-      <AppRoutesContainer isloggedIn={user} />
+      {isLogged && <Navbar />}
+      <AppRoutesContainer isloggedIn={isLogged} />
     </Fragment>
   )
 }

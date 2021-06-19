@@ -5,11 +5,12 @@ import {
 } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { ConnectedRouter } from 'connected-react-router';
+import PropTypes from 'prop-types';
 
+import { PrivateRoute } from "./privateRoute";
 import Login from "../pages/login";
 import Error404 from "../pages/error404";
 import GiftCards from "../pages/gift-cards";
-import { PrivateRoute } from "../components/privateRoute";
 import { history } from "../../redux/store";
 import './styles.scss';
 
@@ -31,5 +32,7 @@ const AppRoutesContainer = ({ isloggedIn}) => {
 
     )
 }
-
+AppRoutesContainer.propTypes = {
+    isloggedIn: PropTypes.bool.isRequired,
+}
 export default AppRoutesContainer;
