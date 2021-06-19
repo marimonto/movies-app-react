@@ -1,11 +1,12 @@
 import './styles.scss';
+import { FaUserAlt } from 'react-icons/fa';
 
-const ButtonComponent = ({ text, handleClick, className }) => {
+const Avatar = () => {
     return (
-        <div onClick={handleClick} className={className}>
-            {text}
-        </div >
+        <button className="avatar">
+            <FaUserAlt />
+        </button >
     );
 }
 
-export default ButtonComponent;
+export default Avatar;

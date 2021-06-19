@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../redux/user/actions";
@@ -15,7 +16,7 @@ const App = () => {
     if (!user) {
       dispatch(userActions.getById());
     }
-  }, [dispatch, user]);
+  }, []);
   return (
     <Fragment>
       {user && <Navbar />}

@@ -16,7 +16,7 @@ import './styles.scss';
 const AppRoutesContainer = ({ isloggedIn}) => {
     
     return (
-        <body className={`body-container ${isloggedIn && 'test'}`}>
+        <body className={`body-container ${isloggedIn && 'padding'}`}>
             <ConnectedRouter history={history}>
                 <Switch>
                     <PrivateRoute exact path="/gift-cards" component={GiftCards} />
