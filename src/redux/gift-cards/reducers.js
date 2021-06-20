@@ -3,6 +3,8 @@ import { giftCardsConstants } from "../../constants/gift-cards.constants";
 const initialState = {
     giftCards: null,
     giftCardsLoading: false,
+    values: null,
+    valuesLoading: false,
     isShowAddCard: false
 }
 export default function giftCardsReducer(state = initialState, action) {
@@ -20,7 +22,23 @@ export default function giftCardsReducer(state = initialState, action) {
             };
         case giftCardsConstants.GET_ALL_FAILURE:
             return initialState;
-        
+        case giftCardsConstants.GET_VALUES_REQUEST:
+            return {
+                ...state,
+                valuesLoading: true
+            };
+        case giftCardsConstants.GET_VALUES_SUCCESS:
+            return {
+                ...state,
+                valuesLoading: false,
+                values: action.values
+            };
+        case giftCardsConstants.GET_VALUES_FAILURE:
+            return {
+                ...state,
+                valuesLoading: false,
+                values: null
+            };
         case giftCardsConstants.SHOW_ADD_CARD:
             return {
                 ...state,

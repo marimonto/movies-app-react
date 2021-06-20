@@ -17,10 +17,15 @@ const GiftCards = () => {
     const dispatch = useDispatch();
     const giftCardsList = useSelector((state) => state.giftCards.giftCards)
     const isShowAddCard = useSelector((state) => state.giftCards.isShowAddCard)
+    const giftCardValues = useSelector((state) => state.giftCards.values)
 
     useEffect(() => {
         dispatch(giftCardsActions.getAll())
     }, []);
+
+    useEffect(() => {
+        isShowAddCard && !giftCardValues && dispatch(giftCardsActions.getValues())
+    }, [isShowAddCard]);
 
     const handleClose = () => {
         dispatch(giftCardsActions.showAddCard())
@@ -37,7 +42,7 @@ const GiftCards = () => {
                 <Button className="add-button" text={<FaPlus />} handleClick={handleClose}/>
             </div>
             <div className="add-gift-card-row">
-                {isShowAddCard && <AddGiftCard handleClose={handleClose}/>}
+                {isShowAddCard && <AddGiftCard handleClose={handleClose} giftCardValues={giftCardValues}/>}
             </div>
             <div className="list-row">
                 {giftCardsList.length ? <List headers={headers} list={giftCardsList} actions={actions} className={isShowAddCard && 'cut-card'} /> : <DataNotFound />}

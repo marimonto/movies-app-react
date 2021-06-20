@@ -1,6 +1,6 @@
 import { Server, Model, Response } from "miragejs"
 import { users } from "./_mocks_/users"
-import { giftCards } from "./_mocks_/gift-cards"
+import { giftCards, giftCardsValues } from "./_mocks_/gift-cards"
 
 
 export function makeServer({ environment = "test" } = {}) {
@@ -9,12 +9,14 @@ export function makeServer({ environment = "test" } = {}) {
 
         models: {
             users: Model,
-            giftCards: Model
+            giftCards: Model,
+            giftCardsValues: Model
         },
 
         seeds(server) {
             server.db.loadData({ users })
             server.db.loadData({ giftCards })
+            server.db.loadData({ giftCardsValues })
         },
         routes() {
             this.post("/api/login", (schema, request) => {
@@ -33,10 +35,24 @@ export function makeServer({ environment = "test" } = {}) {
             })
 
             this.get("/api/giftCard/:id", (schema, request) => {
-                console.log(schema.giftCards.all().models);
                 const id = request.params.id
-                console.log(schema.giftCards.all().models.filter(item => item.id.includes(id)));
                 return schema.giftCards.all().models.filter(item => item.id.includes(id))
+            })
+
+            this.get("/api/giftCards/values", (schema, request) => {
+                return schema.giftCardsValues.all().models[0].values
+            })
+
+            this.post("/api/giftCard", (schema, request) => {
+                let attrs = JSON.parse(request.requestBody)
+                const card = {
+                    id: attrs.id,
+                    value: attrs.value,
+                    state: 'inactiva',
+                    balance: attrs.value
+                }
+                schema.giftCards.create(card)
+                return schema.giftCards.all().models
             })
         },
     })
