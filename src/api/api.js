@@ -29,8 +29,14 @@ export function makeServer({ environment = "test" } = {}) {
             })
 
             this.get("/api/giftCards", (schema, request) => {
-                console.log(schema.giftCards.all());
                 return schema.giftCards.all().models
+            })
+
+            this.get("/api/giftCard/:id", (schema, request) => {
+                console.log(schema.giftCards.all().models);
+                const id = request.params.id
+                console.log(schema.giftCards.all().models.filter(item => item.id.includes(id)));
+                return schema.giftCards.all().models.filter(item => item.id.includes(id))
             })
         },
     })

@@ -2,14 +2,14 @@
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Input = ({ type, name, value, handleChange, title, disabled }) => {
+const Input = ({ type, name, value, handleChange, title, disabled, icon }) => {
     return (
         <div className="input-col">
             <label>
                 <span className="label">{title}</span>
+                {icon}
                 <input id={name} type={type} name={name} value={value} onChange={handleChange} className={`input ${name}-input`} disabled={disabled} />
             </label>
-           
         </div>
     )
 }

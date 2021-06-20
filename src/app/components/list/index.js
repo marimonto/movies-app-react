@@ -1,6 +1,6 @@
 import './styles.scss';
 
-const List = ({ list, headers, actions }) => {
+const List = ({ list, headers, actions, className }) => {
 
     const header = headers.map((header) =>
         <div className="col">{header}</div>
@@ -19,7 +19,7 @@ const List = ({ list, headers, actions }) => {
     const action = (action) => action.icon;
 
     return (
-        <section className="list-card">
+        <section className={`list-card ${className}`}>
             <header className="header" >
                 {header}
             </header>

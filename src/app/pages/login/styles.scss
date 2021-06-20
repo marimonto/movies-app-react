@@ -47,10 +47,12 @@
             color: #dc3545;
             font-weight: 600;
         }
-
-        .input{
-            width: 95%;
-            margin-top: 5px;
+        .input-col {
+            margin-bottom: 10px;
+            .input {
+                width: 95%;
+                margin-top: 5px;
+            }
         }
     }
 }
@@ -72,7 +74,7 @@
     font-weight: bold;
     text-transform: uppercase;
     width: fit-content;
-    float:right;
+    float: right;
     margin-right: 5px;
 
     &:hover {

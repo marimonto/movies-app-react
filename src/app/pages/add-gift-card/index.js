@@ -1,12 +1,11 @@
-import { useSelector } from "react-redux";
+import { MdClose } from 'react-icons/md';
 
 import Input from '../../components/input';
 import Button from '../../components/button';
 import './styles.scss';
-const AddGiftCard = () => {
-    const isShowAddCard = useSelector((state) => state.giftCards.isShowAddCard)
+const AddGiftCard = ({ handleClose }) => {
 
-    return isShowAddCard && <div className="add-gift-card">
+    return <div className="add-gift-card">
         <form className="gift-card-form">
                 <Input
                     name="id"
@@ -21,8 +20,11 @@ const AddGiftCard = () => {
                     value=""
                   
                 />
-                <Button type="submit" text="Guardar" className="save-card-btn"/>
-            </form>
+            <Button type="submit" text="Guardar" className="save-card-btn" />
+        </form>
+        <span className="close" onClick={handleClose}>
+            <MdClose />
+        </span>
         </div>
 }
 

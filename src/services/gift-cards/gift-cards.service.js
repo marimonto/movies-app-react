@@ -1,6 +1,7 @@
 
 export const giftCardsService = {
-    getAll
+    getAll,
+    getById
 };
 
 function getAll() {
@@ -10,6 +11,15 @@ function getAll() {
     };
 
     return fetch(`/api/giftCards`, requestOptions).then(handleResponse)
+}
+
+function getById(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    return fetch(`/api/giftCard/${id}`, requestOptions).then(handleResponse)
 }
 
 
