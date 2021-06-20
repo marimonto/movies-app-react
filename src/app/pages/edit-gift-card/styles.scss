@@ -1,0 +1,24 @@
+.edit-gift-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.25rem;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+
+    .gift-card-form {
+        background-color: #fff;
+        border: 0.0625rem solid #e4e9f2;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .save-card-btn {
+            margin-top: 12px;
+            height: fit-content;
+        }
+    }
+}

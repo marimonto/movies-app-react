@@ -12,7 +12,10 @@ import Login from "../pages/login";
 import Error404 from "../pages/error404";
 import GiftCards from "../pages/gift-cards";
 import { history } from "../../redux/store";
+import EditGiftCard from "../pages/edit-gift-card";
+
 import './styles.scss';
+import SellGiftCard from "../pages/sell-gift-card";
 
 const AppRoutesContainer = ({ isloggedIn}) => {
     
@@ -21,6 +24,8 @@ const AppRoutesContainer = ({ isloggedIn}) => {
             <ConnectedRouter history={history}>
                 <Switch>
                     <PrivateRoute exact path="/gift-cards" component={GiftCards} />
+                    <PrivateRoute exact path="/edit-gift-card" component={EditGiftCard} />
+                    <PrivateRoute exact path="/sell-gift-card" component={SellGiftCard} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/">
                         {isloggedIn ? <Redirect to="/gift-cards" /> : <Redirect to="/login" />}

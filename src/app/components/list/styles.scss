@@ -1,0 +1,46 @@
+.list-card {
+    background-color: #fff;
+    border: 0.0625rem solid #e4e9f2;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    color: #222b45;
+    font-family: Open Sans, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    margin-bottom: 1.875rem;
+
+    .header,
+    .row {
+        display: flex;
+        align-items: center;
+        .col {
+            flex-basis: 0;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+    }
+
+    .row {
+        border-bottom: 1px solid #edf1f7;
+        color: #222b45;
+        font-family: Open Sans, sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        line-height: 1.25rem;
+        padding: 1rem;
+        text-transform: capitalize;
+    }
+
+    .header {
+        border-bottom: 1px solid #edf1f7;
+        padding: 1rem ;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        font-weight: 600;
+        line-height: 1.5rem;
+        text-transform: uppercase;
+    }
+}
