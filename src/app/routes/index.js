@@ -24,8 +24,8 @@ const AppRoutesContainer = ({ isloggedIn}) => {
             <ConnectedRouter history={history}>
                 <Switch>
                     <PrivateRoute exact path="/gift-cards" component={GiftCards} />
-                    <PrivateRoute exact path="/edit-gift-card" component={EditGiftCard} />
-                    <PrivateRoute exact path="/sell-gift-card" component={SellGiftCard} />
+                    <PrivateRoute exact path="/gift-cards/sell/:id" component={SellGiftCard} />
+                    <PrivateRoute exact path="/gift-cards/edit/:id" component={EditGiftCard} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/">
                         {isloggedIn ? <Redirect to="/gift-cards" /> : <Redirect to="/login" />}

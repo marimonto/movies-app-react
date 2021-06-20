@@ -5,17 +5,18 @@ import { MdClose } from 'react-icons/md';
 import Input from '../../components/input';
 import Select from '../../components/select';
 import Button from '../../components/button';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { giftCardsActions } from "../../../redux/gift-cards/actions";
 
 import './styles.scss';
-const AddGiftCard = ({ handleClose, giftCardValues }) => {
+const AddGiftCard = ({ handleClose }) => {
     const [id, setId] = useState("");
+    const giftCardValues = useSelector((state) => state.giftCards.constants.giftCardsValues)
     const [value, setValue] = useState(giftCardValues);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        giftCardValues && setValue(giftCardValues[0])
+        giftCardValues.length && setValue(giftCardValues[0])
     }, [giftCardValues]);
 
     const handleInput = (event) => {
@@ -23,7 +24,6 @@ const AddGiftCard = ({ handleClose, giftCardValues }) => {
     };
 
     const handleSelect = (event) => {
-        console.log(event);
         setValue(event.target.value);
     };
 
@@ -44,8 +44,6 @@ const AddGiftCard = ({ handleClose, giftCardValues }) => {
                 handleChange={handleInput}
             />
             <Select
-                name="value"
-                type="value"
                 title="Valor"
                 value={value}
                 options={giftCardValues}

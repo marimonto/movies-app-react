@@ -1,4 +1,4 @@
-export const giftCardsValues = { values:[50000, 100000, 200000] };
+
 
 export const giftCards = [
     {

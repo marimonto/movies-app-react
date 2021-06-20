@@ -3,7 +3,8 @@ export const giftCardsService = {
     getAll,
     getById,
     createCard,
-    getValues
+    editCard,
+    getConstants
 };
 
 function getAll() {
@@ -34,16 +35,28 @@ function createCard(card) {
     return fetch(`/api/giftCard/`, requestOptions).then(handleResponse)
 }
 
+function editCard(card) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(card)
+    };
+
+    return fetch(`/api/giftCard/`, requestOptions).then(handleResponse)
+}
 
 
-function getValues() {
+
+
+function getConstants() {
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
 
-    return fetch(`/api/giftCards/values`, requestOptions).then(handleResponse)
+    return fetch(`/api/giftCards/constants`, requestOptions).then(handleResponse)
 }
+
 
 function handleResponse(response) {
     return response.text().then(text => {

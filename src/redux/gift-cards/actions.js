@@ -1,11 +1,13 @@
 import { giftCardsConstants } from "../../constants/gift-cards.constants";
 import { giftCardsService } from "../../services/gift-cards/gift-cards.service"
+import { history } from "../store";
 
 export const giftCardsActions = {
     getAll,
     getById,
     createCard,
-    getValues,
+    editCard,
+    getConstants,
     showAddCard
 };
 
@@ -35,7 +37,7 @@ function getAll() {
 
 function getById(id) {
     return dispatch => {
-
+        
         giftCardsService.getById(id)
             .then(
                 giftCards => {
@@ -47,8 +49,8 @@ function getById(id) {
             );
 
     }
-    function success(giftCards) { return { type: giftCardsConstants.GET_ALL_SUCCESS, giftCards } }
-    function failure(error) { return { type: giftCardsConstants.GET_ALL_FAILURE, error } }
+    function success(giftCards) { return { type: giftCardsConstants.GET_BY_ID_SUCCESS, giftCards } }
+    function failure(error) { return { type: giftCardsConstants.GET_BY_ID_FAILURE, error } }
 
 }
 
@@ -69,21 +71,23 @@ function createCard(card) {
 
     }
 
-    function request() { return { type: giftCardsConstants.POST_GIFT_CARD_REQUEST } }
+    function request() { return { type: giftCardsConstants.CREATE_GIFT_CARD_REQUEST } }
     function success(giftCards) { return { type: giftCardsConstants.GET_ALL_SUCCESS, giftCards } }
     function failure(error) { return { type: giftCardsConstants.GET_ALL_FAILURE, error } }
 
 }
 
-function getValues() {
-    return dispatch => {
 
+
+function editCard(card) {
+    return dispatch => {
         dispatch(request());
 
-        giftCardsService.getValues()
+        giftCardsService.editCard(card)
             .then(
-                values => {
-                    dispatch(success(values));
+                giftCards => {
+                    dispatch(success(giftCards));
+                    history.push('/gift-cards');
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -92,9 +96,32 @@ function getValues() {
 
     }
 
-    function request() { return { type: giftCardsConstants.GET_VALUES_REQUEST } }
-    function success(values) { return { type: giftCardsConstants.GET_VALUES_SUCCESS, values } }
-    function failure(error) { return { type: giftCardsConstants.GET_VALUES_FAILURE, error } }
+    function request() { return { type: giftCardsConstants.EDIT_GIFT_CARD_REQUEST } }
+    function success(giftCards) { return { type: giftCardsConstants.GET_ALL_SUCCESS, giftCards } }
+    function failure(error) { return { type: giftCardsConstants.GET_ALL_FAILURE, error } }
+
+}
+
+function getConstants() {
+    return dispatch => {
+
+        dispatch(request());
+
+        giftCardsService.getConstants()
+            .then(
+                data => {
+                    dispatch(success(data.constants));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
+            );
+
+    }
+
+    function request() { return { type: giftCardsConstants.GET_CONSTANTS_REQUEST } }
+    function success(data) { return { type: giftCardsConstants.GET_CONSTANTS_SUCCESS, data } }
+    function failure(error) { return { type: giftCardsConstants.GET_CONSTANTS_FAILURE, error } }
 
 }
 

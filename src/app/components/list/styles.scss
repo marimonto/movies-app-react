@@ -21,6 +21,16 @@
             flex-grow: 1;
             max-width: 100%;
         }
+       .actions-col{
+           display: flex;
+           flex-direction: row;
+           justify-content: space-around;
+           flex-grow: 0.5;
+           .action{
+               cursor: pointer;
+               font-size: 18px;
+           }
+       }
     }
 
     .row {

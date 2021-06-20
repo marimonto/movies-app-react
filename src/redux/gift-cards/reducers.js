@@ -1,10 +1,14 @@
 import { giftCardsConstants } from "../../constants/gift-cards.constants";
 
 const initialState = {
-    giftCards: null,
+    giftCards: [],
     giftCardsLoading: false,
-    values: null,
-    valuesLoading: false,
+    constants: {
+        giftCardsValues:[],
+        documentTypes:[],
+        shop: []
+    },
+    constantsLoading: true,
     isShowAddCard: false
 }
 export default function giftCardsReducer(state = initialState, action) {
@@ -15,29 +19,31 @@ export default function giftCardsReducer(state = initialState, action) {
                 giftCardsLoading: true
             };
         case giftCardsConstants.GET_ALL_SUCCESS:
+        case giftCardsConstants.GET_BY_ID_SUCCESS:
             return {
                 ...state,
                 giftCardsLoading: false,
                 giftCards: action.giftCards
             };
         case giftCardsConstants.GET_ALL_FAILURE:
+        case giftCardsConstants.GET_BY_ID_FAILURE:
             return initialState;
-        case giftCardsConstants.GET_VALUES_REQUEST:
+        case giftCardsConstants.GET_CONSTANTS_REQUEST:
             return {
                 ...state,
-                valuesLoading: true
+                constantsLoading: true
             };
-        case giftCardsConstants.GET_VALUES_SUCCESS:
+        case giftCardsConstants.GET_CONSTANTS_SUCCESS:
             return {
                 ...state,
-                valuesLoading: false,
-                values: action.values
+                constants: action.data,
+                constantsLoading: false
             };
-        case giftCardsConstants.GET_VALUES_FAILURE:
+        case giftCardsConstants.GET_CONSTANTS_FAILURE:
             return {
                 ...state,
-                valuesLoading: false,
-                values: null
+                constants: initialState.constants,
+                constantsLoading: false
             };
         case giftCardsConstants.SHOW_ADD_CARD:
             return {

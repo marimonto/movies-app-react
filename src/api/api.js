@@ -1,6 +1,7 @@
 import { Server, Model, Response } from "miragejs"
 import { users } from "./_mocks_/users"
-import { giftCards, giftCardsValues } from "./_mocks_/gift-cards"
+import { giftCards } from "./_mocks_/gift-cards"
+import { constants } from "./_mocks_/constants"
 
 
 export function makeServer({ environment = "test" } = {}) {
@@ -8,15 +9,16 @@ export function makeServer({ environment = "test" } = {}) {
         environment,
 
         models: {
+          
             users: Model,
             giftCards: Model,
-            giftCardsValues: Model
+            constants: Model
         },
 
         seeds(server) {
             server.db.loadData({ users })
             server.db.loadData({ giftCards })
-            server.db.loadData({ giftCardsValues })
+            server.db.loadData({ constants })
         },
         routes() {
             this.post("/api/login", (schema, request) => {
@@ -40,7 +42,11 @@ export function makeServer({ environment = "test" } = {}) {
             })
 
             this.get("/api/giftCards/values", (schema, request) => {
-                return schema.giftCardsValues.all().models[0].values
+                return schema.constants.all().models[0].giftCardsValues
+            })
+
+            this.get("/api/giftCards/constants", (schema, request) => {
+                return schema.constants.all().models[0]
             })
 
             this.post("/api/giftCard", (schema, request) => {
@@ -52,6 +58,13 @@ export function makeServer({ environment = "test" } = {}) {
                     balance: attrs.value
                 }
                 schema.giftCards.create(card)
+                return schema.giftCards.all().models
+            })
+
+            this.put("/api/giftCard", (schema, request) => {
+                let attrs = JSON.parse(request.requestBody)
+                attrs.state = 'activa'
+                schema.giftCards.create(attrs)
                 return schema.giftCards.all().models
             })
         },
