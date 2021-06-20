@@ -1,57 +1,99 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
+import { giftCardsActions } from "../../../redux/gift-cards/actions";
 import Input from '../../components/input';
 import Button from '../../components/button';
+import Select from "../../components/select";
 import './styles.scss';
 const EditGiftCard = () => {
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const giftCards = useSelector((state) => state.giftCards.giftCards)
+    const [giftCard, setGiftCard] = useState([]);
+    const [purchase, setPurchase] = useState([]);
+    const shops = useSelector((state) => state.giftCards.constants.shops)
+    const constantsLoading = useSelector((state) => state.giftCards.constantsLoading)
 
-    return <div className="edit-gift-card">
-        <form className="gift-card-form">
-            <Input
-                name="id"
-                type="text"
-                title="Id"
-                value=""
-                disabled
-            />
-            <Input
-                name="state"
-                type="text"
-                title="Estado"
-                value=""
-                disabled
+    useEffect(() => {
+        dispatch(giftCardsActions.getById(id));
+    }, []);
 
-            />
-            <Input
-                name="value"
-                type="text"
-                title="Valor"
-                value=""
-                disabled
+    useEffect(() => {
+        giftCards.length === 1 && setGiftCard(giftCards[0])
+    }, [giftCards]);
 
-            />
-            <Input
-                name="purchaseValue"
-                type="text"
-                title="Valor pago con tarjeta"
-                value=""
+    const handleChange = (event) => {
+        setPurchase(
+            {
+                ...purchase,
+                [event.target.name]: event.target.value
+            }
+        )
+    };
 
-            />
-            <Input
-                name="invoiceNumber"
-                type="text"
-                title="Número de la factura"
-                value=""
+    const handleSubmit = e => {
+        e.preventDefault();
+        const newGiftCard = JSON.parse(JSON.stringify(giftCard))
+        newGiftCard.purchases.push(purchase);
+        console.log(newGiftCard);
+        dispatch(giftCardsActions.editCard(newGiftCard))
+    }
 
-            />
-            <Input
-                name="shop"
-                type="text"
-                title="Tienda"
-                value=""
+    return (!constantsLoading && <div className="edit-gift-container">
+        <div className="edit-gift-card">
+            <header className="header">
+                <h1>registrar compra</h1>
+            </header>
+            <form className="gift-card-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <Input
+                        name="id"
+                        type="text"
+                        title="Id"
+                        value={giftCard.id}
+                        disabled
+                    />
+                    <Input
+                        name="value"
+                        type="text"
+                        title="Valor"
+                        value={giftCard.value}
+                        disabled
 
-            />
-            <Button type="submit" text="Guardar" className="save-card-btn" />
-        </form>
-    </div>
+                    />
+                </div>
+                <div className="form-group">
+                    <Input
+                        name="value"
+                        type="text"
+                        title="Valor pago con tarjeta"
+                        value={purchase.value}
+                        handleChange={handleChange}
+
+                    />
+                    <Input
+                        name="number"
+                        type="text"
+                        title="Número de la factura"
+                        value={purchase.number}
+                        handleChange={handleChange}
+                    />
+                </div>
+                <div className="form-group shop-select">
+                    <Select
+                        name="shop"
+                        title="Tienda"
+                        value={giftCard.shop}
+                        options={shops}
+                        handleChange={handleChange}
+                    />
+                </div>
+                <Button type="submit" text="Guardar" className="save-card-btn" />
+            </form>
+        </div>
+    </div>)
 }
 
 export default EditGiftCard;

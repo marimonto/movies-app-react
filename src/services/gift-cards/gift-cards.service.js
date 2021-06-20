@@ -3,6 +3,7 @@ export const giftCardsService = {
     getAll,
     getById,
     createCard,
+    sellCard,
     editCard,
     getConstants
 };
@@ -35,6 +36,17 @@ function createCard(card) {
     return fetch(`/api/giftCard/`, requestOptions).then(handleResponse)
 }
 
+
+function sellCard(card) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(card)
+    };
+
+    return fetch(`/api/giftCard/sell`, requestOptions).then(handleResponse)
+}
+
 function editCard(card) {
     const requestOptions = {
         method: 'PUT',
@@ -42,7 +54,7 @@ function editCard(card) {
         body: JSON.stringify(card)
     };
 
-    return fetch(`/api/giftCard/`, requestOptions).then(handleResponse)
+    return fetch(`/api/giftCard/edit`, requestOptions).then(handleResponse)
 }
 
 

@@ -6,6 +6,7 @@ export const giftCardsActions = {
     getAll,
     getById,
     createCard,
+    sellCard,
     editCard,
     getConstants,
     showAddCard
@@ -77,6 +78,30 @@ function createCard(card) {
 
 }
 
+
+
+function sellCard(card) {
+    return dispatch => {
+        dispatch(request());
+
+        giftCardsService.sellCard(card)
+            .then(
+                giftCards => {
+                    dispatch(success(giftCards));
+                    history.push('/gift-cards');
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
+            );
+
+    }
+
+    function request() { return { type: giftCardsConstants.EDIT_GIFT_CARD_REQUEST } }
+    function success(giftCards) { return { type: giftCardsConstants.GET_ALL_SUCCESS, giftCards } }
+    function failure(error) { return { type: giftCardsConstants.GET_ALL_FAILURE, error } }
+
+}
 
 
 function editCard(card) {
