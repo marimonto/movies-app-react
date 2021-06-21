@@ -38,7 +38,7 @@ function getAll() {
 
 function getById(id) {
     return dispatch => {
-        
+        dispatch(request());
         giftCardsService.getById(id)
             .then(
                 giftCards => {
@@ -50,6 +50,7 @@ function getById(id) {
             );
 
     }
+    function request() { return { type: giftCardsConstants.GET_BY_ID_REQUEST } }
     function success(giftCards) { return { type: giftCardsConstants.GET_BY_ID_SUCCESS, giftCards } }
     function failure(error) { return { type: giftCardsConstants.GET_BY_ID_FAILURE, error } }
 

@@ -117,4 +117,15 @@ describe('Login component tests', () => {
   });
 
 
+
+  it('should render errorMessage', () => {
+    const error = 'Ingrese un usuario válido'
+    initialState.user.error = error
+    render(component);
+    const errorMessage = screen.getByText(error)
+    expect(errorMessage).toBeInTheDocument()
+    expect(errorMessage).toHaveClass('error-message')
+  });
+
+
 })

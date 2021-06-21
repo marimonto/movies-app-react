@@ -3,7 +3,7 @@ import './styles.scss';
 
 const Loader = () => {
     return (
-        <div className="lds-ring">
+        <div data-testid="loader" className="lds-ring">
             <div/>
             <div/>
             <div/>

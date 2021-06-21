@@ -10,13 +10,15 @@ import Button from "../../components/button";
 import AddGiftCard from "../add-gift-card";
 import { FaPlus } from 'react-icons/fa';
 import { BiSearchAlt2 } from 'react-icons/bi';
-import './styles.scss';
 import DataNotFound from "../no-data-found";
-import { history } from "../../../redux/store";
+import { useHistory } from "react-router-dom";
+
 import Loader from "../../components/loader";
+import './styles.scss';
 
 const GiftCards = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const giftCards = useSelector((state) => state.giftCards.giftCards)
     const isShowAddCard = useSelector((state) => state.giftCards.isShowAddCard)
     const className = isShowAddCard ? 'cut-card': null
@@ -46,6 +48,7 @@ const GiftCards = () => {
 
     const handleActionClick = (action, giftCard, event) => {
         event.preventDefault();
+        console.log(giftCard.state);
         if (action === 'sell') {
             giftCard.state === 'inactiva' ?
                 history.push(`/gift-cards/sell/${giftCard.id}`)

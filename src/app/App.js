@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ConnectedRouter } from 'connected-react-router';
-import { useLocation } from "react-router-dom";
 
 import { userActions } from "../redux/user/actions";
 import { giftCardsActions } from "../redux/gift-cards/actions";
@@ -20,16 +19,13 @@ const App = () => {
       dispatch(userActions.getById());
     }
   }, []);
-
   useEffect(() => {
     isLogged && dispatch(giftCardsActions.getConstants());
   }, [isLogged]);
-
   return (
     
     <ConnectedRouter history={history}>
-      {isLogged && <Navbar />}
-      <AppRoutesContainer isloggedIn={isLogged} />
+      <AppRoutesContainer />
     </ConnectedRouter>
   )
 }

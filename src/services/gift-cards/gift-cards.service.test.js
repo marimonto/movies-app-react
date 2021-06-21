@@ -11,11 +11,11 @@ afterEach(() => {
 })
 
 it("shows the movies", function () {
-    server.create("giftCards", {
+  /*   server.create("giftCards", {
         id: '585-4311',
         value: 50000,
         state: 'inactiva',
         balance: 50000
-    })
+    }) */
 
 })

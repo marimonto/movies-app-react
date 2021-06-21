@@ -10,12 +10,12 @@ import './styles.scss';
 const EditGiftCard = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const giftCards = useSelector((state) => state.giftCards.giftCards)
     const [giftCard, setGiftCard] = useState([]);
     const [purchase, setPurchase] = useState();
+    const giftCards = useSelector((state) => state.giftCards.giftCards)
     const shops = useSelector((state) => state.giftCards.constants.shops)
     const constantsLoading = useSelector((state) => state.giftCards.constantsLoading)
-
+    
     useEffect(() => {
         dispatch(giftCardsActions.getById(id));
     }, []);
@@ -55,27 +55,26 @@ const EditGiftCard = () => {
                         disabled
                     />
                     <Input
-                        name="value"
+                        name="balance"
                         type="text"
-                        title="Valor"
-                        value={giftCard.value}
+                        title="Saldo"
+                        value={giftCard.balance}
                         disabled
                     />
                 </div>
                 <div className="form-group">
                     <Input
-                        name="value"
+                        name="cardPayment"
                         type="text"
                         title="Valor pago con tarjeta"
-                        value={purchase && purchase.value}
+                        value={purchase && purchase.cardPayment}
                         handleChange={handleChange}
-
                     />
                     <Input
-                        name="number"
+                        name="invoiceNumber"
                         type="text"
                         title="Número de la factura"
-                        value={purchase && purchase.number}
+                        value={purchase && purchase.invoiceNumber}
                         handleChange={handleChange}
                     />
                 </div>

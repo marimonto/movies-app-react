@@ -12,8 +12,8 @@ import { giftCardsActions } from "../../../redux/gift-cards/actions";
 import './styles.scss';
 const AddGiftCard = ({ handleClose }) => {
     const [id, setId] = useState("");
-    const giftCardValues = useSelector((state) => state.giftCards.constants.giftCardsValues)
     const [value, setValue] = useState('');
+    const giftCardValues = useSelector((state) => state.giftCards.constants.giftCardsValues)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const AddGiftCard = ({ handleClose }) => {
             />
             <Button type="submit" text="Guardar" className="save-card-btn" />
         </form>
-        <span className="close" onClick={handleClose}>
+        <span type="button" className="close" onClick={handleClose}>
             <MdClose />
         </span>
     </div>

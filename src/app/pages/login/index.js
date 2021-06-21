@@ -1,7 +1,6 @@
-import {  useState, useEffect } from "react";
+import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../redux/user/actions";
-import { useHistory } from "react-router-dom";
 
 import Button from "../../components/button";
 import Input from "../../components/input";
@@ -14,14 +13,6 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const errorMessage = useSelector((state) => state.user.error);
     const dispatch = useDispatch();
-    const userId = JSON.parse(localStorage.getItem('userId'));
-    const history = useHistory();
-
-    useEffect(() => { 
-        if (userId) {
-            history.push("/gift-cards");
-        }
-    }, []);
 
     const handleUserInput = (event) => {
         setUserName(event.target.value);
@@ -44,7 +35,7 @@ const Login = () => {
                         Ingresar con usuario y contraseña
                     </h1>
                 </header>
-                <main className="body">
+                <main className="main">
                     <form onSubmit={handleSubmit}>
                         <Input
                             name="user"

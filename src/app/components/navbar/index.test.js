@@ -3,10 +3,15 @@ import userEvent from '@testing-library/user-event';
 import Navbar from './index';
 import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+
 
 const middlewares = [];
 const mockStore = configureMockStore(middlewares);
 
+const route = '/gift-cards/edit/11';
+const history = createMemoryHistory({ initialEntries: [route] });
 describe('Navbar component tests', () => {
   let component = {};
   let store = {};
@@ -14,8 +19,12 @@ describe('Navbar component tests', () => {
   beforeEach(() => {
     store = mockStore(initialState);
     component = (
+    
+
       <Provider store={store}>
-        <Navbar />
+        <Router history={history}>
+          <Navbar />
+        </Router>
       </Provider>
     );
   });
@@ -42,5 +51,15 @@ describe('Navbar component tests', () => {
     expect(receivedActions).toEqual([expectedPayload])
   });
 
+  it('should call handleClickLogo and redirect', () => {
+    render(component);
+    const logoMovies = screen.getByRole('img', { name: /logo movies/i })
+    expect(logoMovies).toBeInTheDocument();
+    expect(history.location.pathname).toBe(route);
+    userEvent.click(logoMovies)
+    const expectLocationPathname = "/gift-cards"
+    expect(history.location.pathname).toBe(expectLocationPathname);
+  });
 
+ 
 })

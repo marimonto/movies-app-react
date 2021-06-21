@@ -5,9 +5,12 @@ import { useDispatch } from "react-redux";
 import Avatar from '../avatar';
 import Dropdown from '../dropdown';
 import { userActions } from "../../../redux/user/actions";
-import { history } from "../../../redux/store";
+import { useHistory } from "react-router-dom";
+
+
 
 const Navbar = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleClickLogout = () => {
     dispatch(userActions.logout())
