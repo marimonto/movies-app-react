@@ -25,7 +25,7 @@ const SellGiftCard = () => {
 
 
     useEffect(() => {
-        giftCards.length === 1 && setGiftCard(giftCards[0])
+        giftCards && giftCards.length === 1 && setGiftCard(giftCards[0])
     }, [giftCards]);
 
     const handleChange = (event) => {

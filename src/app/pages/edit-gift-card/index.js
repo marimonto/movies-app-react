@@ -12,7 +12,7 @@ const EditGiftCard = () => {
     const { id } = useParams();
     const giftCards = useSelector((state) => state.giftCards.giftCards)
     const [giftCard, setGiftCard] = useState([]);
-    const [purchase, setPurchase] = useState([]);
+    const [purchase, setPurchase] = useState();
     const shops = useSelector((state) => state.giftCards.constants.shops)
     const constantsLoading = useSelector((state) => state.giftCards.constantsLoading)
 
@@ -21,7 +21,7 @@ const EditGiftCard = () => {
     }, []);
 
     useEffect(() => {
-        giftCards.length === 1 && setGiftCard(giftCards[0])
+        giftCards && giftCards.length === 1 && setGiftCard(giftCards[0])
     }, [giftCards]);
 
     const handleChange = (event) => {
@@ -37,7 +37,6 @@ const EditGiftCard = () => {
         e.preventDefault();
         const newGiftCard = JSON.parse(JSON.stringify(giftCard))
         newGiftCard.purchases.push(purchase);
-        console.log(newGiftCard);
         dispatch(giftCardsActions.editCard(newGiftCard))
     }
 
@@ -61,7 +60,6 @@ const EditGiftCard = () => {
                         title="Valor"
                         value={giftCard.value}
                         disabled
-
                     />
                 </div>
                 <div className="form-group">
@@ -69,7 +67,7 @@ const EditGiftCard = () => {
                         name="value"
                         type="text"
                         title="Valor pago con tarjeta"
-                        value={purchase.value}
+                        value={purchase && purchase.value}
                         handleChange={handleChange}
 
                     />
@@ -77,7 +75,7 @@ const EditGiftCard = () => {
                         name="number"
                         type="text"
                         title="Número de la factura"
-                        value={purchase.number}
+                        value={purchase && purchase.number}
                         handleChange={handleChange}
                     />
                 </div>

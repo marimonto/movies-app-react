@@ -2,7 +2,7 @@ import { userConstants } from "../../constants/user.constants";
 
 const initialState = {
     user: null,
-    userLoading: false,
+    userLoading: true,
     error: null,
     isloggedIn: false
 }
@@ -26,10 +26,11 @@ export default function userReducer(state = initialState, action) {
 
             return {
                 ...initialState,
+                userLoading: false,
                 error: action.error,
             };
         case userConstants.LOGOUT:
-            return initialState;
+            return {...initialState, userLoading: false,};
         default:
             return state;
     }

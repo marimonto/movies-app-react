@@ -8,7 +8,11 @@ const Button = ({ text, handleClick, className, type }) => {
     );
 }
 Button.propTypes = {
-    text: PropTypes.string.isRequired,
+    text: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
+    ]).isRequired,
+    type: PropTypes.string,
     className: PropTypes.string,
     handleClick: PropTypes.func,
 }

@@ -55,6 +55,7 @@ function getById() {
         dispatch(request());
         const userId = JSON.parse(localStorage.getItem('userId'));
         if (!userId) {
+            failure()
             return history.push('/login');
         }
         userService.getById('userId').then(

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import './styles.scss';
 const Select = ({ title, options, value, handleChange, name}) => {
     return (
@@ -5,7 +7,7 @@ const Select = ({ title, options, value, handleChange, name}) => {
             <label>
                 <span className="label">{title}</span>
                 <select name={name} className='select' value={value} onChange={handleChange}>
-                    {options.map(option => <option value={option}>{option}</option>)}
+                    {options.map(option => <option key={option} value={option}>{option}</option>)}
                 </select>
             </label>
         </div>
@@ -13,7 +15,14 @@ const Select = ({ title, options, value, handleChange, name}) => {
     );
 }
 Select.propTypes = {
-
+    title: PropTypes.string,
+    options: PropTypes.array,
+    values: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    handleChange: PropTypes.func,
+    name: PropTypes.string
 }
 
 export default Select;

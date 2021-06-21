@@ -1,6 +1,7 @@
-import { Fragment, useState } from "react";
+import {  useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../redux/user/actions";
+import { useHistory } from "react-router-dom";
 
 import Button from "../../components/button";
 import Input from "../../components/input";
@@ -13,6 +14,14 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const errorMessage = useSelector((state) => state.user.error);
     const dispatch = useDispatch();
+    const userId = JSON.parse(localStorage.getItem('userId'));
+    const history = useHistory();
+
+    useEffect(() => { 
+        if (userId) {
+            history.push("/gift-cards");
+        }
+    }, []);
 
     const handleUserInput = (event) => {
         setUserName(event.target.value);
@@ -27,17 +36,15 @@ const Login = () => {
         dispatch(userActions.login(userName, password))
     }
 
-    return <Fragment>
-
-        <div className="container">
-            <div className="card" >
+    return <div className="container">
+            <section className="card" >
                 <header className="header">
                     <img className="logo" src={logo} alt="Logo" />
                     <h1 className="title" >
                         Ingresar con usuario y contraseña
                     </h1>
                 </header>
-                <body className="body">
+                <main className="body">
                     <form onSubmit={handleSubmit}>
                         <Input
                             name="user"
@@ -46,7 +53,7 @@ const Login = () => {
                             value={userName}
                             handleChange={handleUserInput}
                         />
-                    
+
                         <Input
                             name="password"
                             type="password"
@@ -57,10 +64,9 @@ const Login = () => {
                         {errorMessage && <span className="error-message">{errorMessage}</span>}
                         <Button className="login-button" type="submit" text="Ingresar">Submit</Button>
                     </form>
-                </body>
-            </div>
+                </main>
+            </section>
         </div>
-    </Fragment>
 
 }
 

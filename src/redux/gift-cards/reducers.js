@@ -1,8 +1,8 @@
 import { giftCardsConstants } from "../../constants/gift-cards.constants";
 
 const initialState = {
-    giftCards: [],
-    giftCardsLoading: false,
+    giftCards: null,
+    giftCardsLoading: true,
     constants: {
         giftCardsValues:[],
         documentTypes:[],

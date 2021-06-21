@@ -13,11 +13,13 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import './styles.scss';
 import DataNotFound from "../no-data-found";
 import { history } from "../../../redux/store";
+import Loader from "../../components/loader";
 
 const GiftCards = () => {
     const dispatch = useDispatch();
     const giftCards = useSelector((state) => state.giftCards.giftCards)
     const isShowAddCard = useSelector((state) => state.giftCards.isShowAddCard)
+    const className = isShowAddCard ? 'cut-card': null
     const [giftCardsList, setGiftCardsList] = useState();
 
     useEffect(() => {
@@ -25,11 +27,12 @@ const GiftCards = () => {
     }, []);
 
     useEffect(() => {
-  
+        
         giftCards && setGiftCardsList(giftCards.map(item => {
             const { id, value, state, balance } = item
             return { id, value, state, balance };
         }))
+        isShowAddCard && handleClose()
         
     }, [giftCards]);
 
@@ -51,25 +54,25 @@ const GiftCards = () => {
 
     }
 
-    return giftCards && <div className="gift-cards-container">
+    return giftCardsList ? <div className="gift-cards-container">
         <div className="gift-cards-column">
             <div className="search-row">
-                <Input icon={<BiSearchAlt2 />} handleChange={handleChange} />
+                <Input type="text" icon={<BiSearchAlt2 />} handleChange={handleChange} />
                 <Button className="add-button" text={<FaPlus />} handleClick={handleClose} />
             </div>
             <div className="add-gift-card-row">
                 {isShowAddCard && <AddGiftCard handleClose={handleClose} />}
             </div>
             <div className="list-row">
-                {giftCardsList ? <List
+                {giftCardsList && giftCardsList.length > 0 ? <List
                     headers={headers}
                     list={giftCardsList}
                     actions={actions}
-                    className={isShowAddCard && 'cut-card'}
+                    className={className}
                     handleActionClick={handleActionClick} /> : <DataNotFound />}
             </div>
         </div>
-    </div>
+    </div> : <Loader/>
 }
 
 export default GiftCards;

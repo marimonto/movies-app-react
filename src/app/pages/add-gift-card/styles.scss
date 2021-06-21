@@ -12,7 +12,9 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
-
+        .input-col{
+            width: 40%;
+        }
         .save-card-btn{
             cursor: pointer;
             margin-top: 12px;

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import PropTypes from 'prop-types';
 
 import { MdClose } from 'react-icons/md';
 
 import Input from '../../components/input';
 import Select from '../../components/select';
 import Button from '../../components/button';
-import { useDispatch, useSelector } from "react-redux";
 import { giftCardsActions } from "../../../redux/gift-cards/actions";
 
 import './styles.scss';
 const AddGiftCard = ({ handleClose }) => {
     const [id, setId] = useState("");
     const giftCardValues = useSelector((state) => state.giftCards.constants.giftCardsValues)
-    const [value, setValue] = useState(giftCardValues);
+    const [value, setValue] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -55,6 +56,10 @@ const AddGiftCard = ({ handleClose }) => {
             <MdClose />
         </span>
     </div>
+}
+
+AddGiftCard.prototype = {
+    handleChange: PropTypes.func,
 }
 
 export default AddGiftCard;

@@ -1,29 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { ConnectedRouter } from 'connected-react-router';
+import { useLocation } from "react-router-dom";
+
 import { userActions } from "../redux/user/actions";
 import { giftCardsActions } from "../redux/gift-cards/actions";
-
 import Navbar from "./components/navbar";
 import AppRoutesContainer from "./routes";
-
-
+import { history } from "../redux/store";
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLogged = useSelector((state) => state.user.isloggedIn)
+  const isLogged = useSelector((state) => state.user.isloggedIn) 
+
   useEffect(() => {
-    dispatch(giftCardsActions.getConstants());
-    if (!isLogged) {
+    if (!isLogged && JSON.parse(localStorage.getItem('userId'))) {
       dispatch(userActions.getById());
     }
   }, []);
+
+  useEffect(() => {
+    isLogged && dispatch(giftCardsActions.getConstants());
+  }, [isLogged]);
+
   return (
-    <Fragment>
+    
+    <ConnectedRouter history={history}>
       {isLogged && <Navbar />}
       <AppRoutesContainer isloggedIn={isLogged} />
-    </Fragment>
+    </ConnectedRouter>
   )
 }
 

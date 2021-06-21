@@ -20,7 +20,6 @@ const Navbar = () => {
   return (
     <header className="layout-header">
       <nav className="nav">
-        
         <img className="logo-header" src={logoHeader} alt="Logo Movies" onClick={handleClickLogo} />
         <div className="dropdown">
           <Avatar/>
