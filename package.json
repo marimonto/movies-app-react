@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.1",
     "connected-react-router": "^6.9.1",
     "node-sass": "4.14.1",
     "prop-types": "^15.7.2",
@@ -46,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "jest-fetch-mock": "^3.0.3",
     "miragejs": "^0.1.41",
     "redux-mock-store": "^1.5.4"
   },

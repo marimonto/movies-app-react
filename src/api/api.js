@@ -70,7 +70,6 @@ export function makeServer({ environment = "test" } = {}) {
 
             this.put("/api/giftCard/edit", (schema, request) => {
                 let attrs = JSON.parse(request.requestBody)
-                console.log(attrs);
                 attrs.balance = attrs.balance - attrs.purchases[attrs.purchases.length - 1].cardPayment
                 attrs.state = attrs.balance <= 0 ? 'terminada' : 'activa';
                 schema.giftCards.create(attrs)

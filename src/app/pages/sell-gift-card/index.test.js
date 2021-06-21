@@ -131,7 +131,6 @@ describe('SellGiftCard component tests', () => {
 
     const expectedAction = { type: '@GIFT_CARDS/EDIT_GIFT_CARD_REQUEST' }
     expect(receivedActions.length).toEqual(2);
-    console.log(receivedActions);
     expect(receivedActions[1]).toEqual(expectedAction)
   });
 });
