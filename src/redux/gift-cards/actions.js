@@ -1,4 +1,5 @@
 import { giftCardsConstants } from "../../constants/gift-cards.constants";
+import { desnormalized, normalizeData } from "../../schemas/giftCards.schema";
 import { giftCardsService } from "../../services/gift-cards/gift-cards.service"
 import { history } from "../store";
 
@@ -21,7 +22,8 @@ function getAll() {
         giftCardsService.getAll()
             .then(
                 giftCards => {
-                    dispatch(success(giftCards));
+                  //  dispatch(success(giftCards));
+                    dispatch(success(normalizeData(giftCards)));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -42,7 +44,8 @@ function getById(id) {
         giftCardsService.getById(id)
             .then(
                 giftCards => {
-                    dispatch(success(giftCards));
+                    dispatch(success(normalizeData(giftCards)));
+                    //dispatch(success(giftCards));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -64,7 +67,8 @@ function createCard(card) {
         giftCardsService.createCard(card)
             .then(
                 giftCards => {
-                    dispatch(success(giftCards));
+                    dispatch(success(normalizeData(giftCards)));
+                   // dispatch(success(giftCards));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -84,11 +88,12 @@ function createCard(card) {
 function sellCard(card) {
     return dispatch => {
         dispatch(request());
-
-        giftCardsService.sellCard(card)
+        giftCardsService.sellCard(desnormalized(card))
+       // giftCardsService.sellCard(card)
             .then(
                 giftCards => {
-                    dispatch(success(giftCards));
+                    //dispatch(success(giftCards));
+                    dispatch(success(normalizeData(giftCards)));
                     history.push('/gift-cards');
                 },
                 error => {
@@ -108,11 +113,12 @@ function sellCard(card) {
 function editCard(card) {
     return dispatch => {
         dispatch(request());
-
-        giftCardsService.editCard(card)
+        //giftCardsService.editCard(card)
+         giftCardsService.editCard(desnormalized(card)) 
             .then(
                 giftCards => {
-                    dispatch(success(giftCards));
+                   // dispatch(success(giftCards));
+                    dispatch(success(normalizeData(giftCards)));
                     history.push('/gift-cards');
                 },
                 error => {

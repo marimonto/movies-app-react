@@ -11,12 +11,12 @@ export const giftCards = [
     {
         id: '816-4168',
         value: 50000,
-        state: 'activa',
+        state: 'terminada',
         balance: 0,
         purchases: [
             {
                 cardPayment: 50000,
-                date: new Date(2021, 11, 17),
+                date: null,
                 invoiceNumber: '1222',
                 shop: 'Movies la central'
             }
@@ -25,12 +25,12 @@ export const giftCards = [
     {
         id: '324-3869',
         value: 50000,
-        state: 'activa',
+        state: 'terminada',
         balance: 0,
         purchases: [
             {
                 cardPayment: 50000,
-                date: new Date(2019, 6, 11),
+                date: null,
                 invoiceNumber: '1222',
                 shop: 'Movies la central'
             }
@@ -44,7 +44,7 @@ export const giftCards = [
         purchases: [
             {
                 cardPayment: 29.890,
-                date: new Date(2019, 6, 11),
+                date: null,
                 invoiceNumber: '1222',
                 shop: 'Movies la central'
             }
@@ -68,12 +68,12 @@ export const giftCards = [
     {
         id: '879-6579',
         value: 50000,
-        state: 'activa',
+        state: 'terminada',
         balance: 0,
         purchases: [
             {
                 cardPayment: 50000,
-                date: new Date(2019, 6, 11),
+                date: null,
                 invoiceNumber: '1222',
                 shop: 'Movies la central'
             }
@@ -102,7 +102,7 @@ export const giftCards = [
         purchases: [
             {
                 cardPayment: 50000,
-                date: new Date(2019, 6, 11),
+                date: null,
                 invoiceNumber: '1222',
                 shop: 'Movies la central'
             }

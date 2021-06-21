@@ -56,7 +56,6 @@ describe('GiftCards component tests', () => {
     it('should call action when componentDidMount', () => {
         render(component);
         const receivedActions = store.getActions();
-        console.log(receivedActions);
         const expectedActions = [{ type: '@GIFT_CARDS/GET_ALL_REQUEST' }]
         expect(receivedActions.length).toEqual(1);
         expect(receivedActions).toEqual(expectedActions)
@@ -126,7 +125,6 @@ describe('GiftCards component tests', () => {
         expect(addGiftCardContainer).toHaveClass('add-gift-card')
         expect(addGiftCardRow).toContainElement(addGiftCardContainer)
 
-        console.log(receivedActions);
         expect(receivedActions.length).toEqual(2);
 
         userEvent.click(addGiftCardButton);

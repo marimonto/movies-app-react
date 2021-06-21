@@ -53,6 +53,7 @@ function logout() {
 function getById() {
     return dispatch => {
         dispatch(request());
+       
         const userId = JSON.parse(localStorage.getItem('userId'));
         if (!userId) {
             failure()

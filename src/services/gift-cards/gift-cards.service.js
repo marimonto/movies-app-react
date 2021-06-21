@@ -13,7 +13,6 @@ function getAll() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
-
     return fetch(`/api/giftCards`, requestOptions).then(handleResponse)
 }
 
@@ -22,7 +21,7 @@ function getById(id) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
-
+  
     return fetch(`/api/giftCard/${id}`, requestOptions).then(handleResponse)
 }
 

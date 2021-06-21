@@ -48,7 +48,6 @@ const GiftCards = () => {
 
     const handleActionClick = (action, giftCard, event) => {
         event.preventDefault();
-        console.log(giftCard.state);
         if (action === 'sell') {
             giftCard.state === 'inactiva' ?
                 history.push(`/gift-cards/sell/${giftCard.id}`)

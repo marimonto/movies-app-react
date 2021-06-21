@@ -1,6 +1,5 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { fetchMiddleware } from 'redux-recompose';
 
 function waitForInjections() {
   return new Promise(resolve => setImmediate(resolve));
@@ -16,7 +15,7 @@ function createWaitForInjections() {
 
 const waitForInjectionsMiddleware = createWaitForInjections();
 
-const middlewares = [waitForInjectionsMiddleware, thunk, fetchMiddleware];
+const middlewares = [waitForInjectionsMiddleware, thunk];
 
 export const mockStore = configureStore(middlewares);
 
