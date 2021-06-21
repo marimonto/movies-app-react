@@ -23,14 +23,13 @@ export default function userReducer(state = initialState, action) {
                 isloggedIn: true
             };
         case userConstants.LOGIN_FAILURE:
-
             return {
                 ...initialState,
                 userLoading: false,
                 error: action.error,
             };
         case userConstants.LOGOUT:
-            return {...initialState, userLoading: false,};
+            return {...initialState, userLoading: false};
         default:
             return state;
     }

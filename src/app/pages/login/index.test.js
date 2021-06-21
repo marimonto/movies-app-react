@@ -79,7 +79,7 @@ describe('Login component tests', () => {
     expect(receivedActions.length).toEqual(1);
     const expectedPayload = [{
       error: 'Ingrese un usuario válido',
-      type: 'USER_LOGIN_FAILURE'
+      type: '@@USER/LOGIN_FAILURE'
     }]
     expect(receivedActions).toEqual(expectedPayload)
   });
@@ -95,7 +95,7 @@ describe('Login component tests', () => {
     expect(receivedActions.length).toEqual(1);
     const expectedPayload = [{
       error: 'Ingrese una contraseña válido',
-      type: 'USER_LOGIN_FAILURE'
+      type: '@@USER/LOGIN_FAILURE'
     }]
     expect(receivedActions).toEqual(expectedPayload)
   });
@@ -112,7 +112,7 @@ describe('Login component tests', () => {
 
     userEvent.click(submitButton);
     expect(receivedActions.length).toEqual(1);
-    const expectedPayload = [{ type: 'USER_LOGIN_REQUEST', user: { username: 'user' } }]
+    const expectedPayload = [{ type: '@@USER/LOGIN_REQUEST', user: { username: 'user' } }]
     expect(receivedActions).toEqual(expectedPayload)
   });
 

@@ -47,7 +47,7 @@ describe('Navbar component tests', () => {
   
     userEvent.click(logoutOption);
     expect(receivedActions.length).toEqual(1);
-    const expectedPayload = { type: 'USER_LOGOUT' }
+    const expectedPayload = { type: '@@USER/LOGOUT' }
     expect(receivedActions).toEqual([expectedPayload])
   });
 
